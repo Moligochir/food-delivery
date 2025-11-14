@@ -1,0 +1,164 @@
+"use clinet";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { PenIcon } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+export const EditFood = ({ foodName, image, ingredients, price }) => {
+  const [inputNameValue, setInputNameValue] = useState("");
+  const [inputPriceValue, setInpuPriceValue] = useState("");
+  const [inputIngredientsValue, setInputIngredientsValue] = useState("");
+  const [isShow, setIsShow] = useState(false);
+  // console.log(inputNameValue, "sda");
+  // console.log(inputPriceValue, "2");
+  // console.log(inputIngredientsValue, "3");
+
+  const ConstEditFood = async () => {
+    await fetch("http://localhost:8000/foods", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: "Bearer ",
+      },
+      body: JSON.stringify({
+        foodName: inputNameValue,
+        price: inputPriceValue,
+        ingredients: inputIngredientsValue,
+        category: categoryId,
+        image: "",
+      }),
+    });
+    getData();
+    setIsShow(false);
+  };
+
+  return (
+    <Dialog open={isShow} onOpenChange={setIsShow}>
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full w-11 h-11 absolute text-[#EF4444]"
+        >
+          <PenIcon />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>
+            <p className="w-full">Dishes info</p>
+          </DialogTitle>
+        </DialogHeader>
+        <div className="flex justify-between items-center w-full h-15 text-lg font-bold">
+          <div className="flex w-full text-sm items-center gap-3">
+            <label
+              className="text-xs text-[#71717A] w-1/3 font-light"
+              htmlFor="Food name"
+            >
+              Dish name
+            </label>
+            <Input
+              className="font-light w-72"
+              defaultValue={foodName}
+              placeholder="Type food name"
+            />
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full h-15 text-lg font-bold">
+          <div className="flex w-full text-sm items-center gap-3">
+            <label
+              className="text-xs text-[#71717A] w-1/3 font-light"
+              htmlFor="Food name"
+            >
+              Dish category
+            </label>
+            <Select>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Theme" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="light">{""}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full h-15 text-lg font-bold">
+          <div className="flex w-full text-sm items-center gap-3">
+            <label
+              className="text-xs text-[#71717A] w-1/3 font-light"
+              htmlFor="Food name"
+            >
+              Ingredients
+            </label>
+            <Input
+              onChange={(e) => setInpuPriceValue(e.target.value)}
+              className="font-light w-72"
+              defaultValue={ingredients}
+              type="Food name"
+              id="Food name"
+              placeholder="Type food name"
+            />
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full h-15 text-lg font-bold">
+          <div className="flex w-full text-sm items-center gap-3">
+            <label
+              className="text-xs text-[#71717A] w-1/3 font-light"
+              htmlFor="Food name"
+            >
+              Price
+            </label>
+            <Input
+              onChange={(e) => setInputIngredientsValue(e.target.value)}
+              className="font-light w-72"
+              defaultValue={price}
+              type="Food name"
+              id="Food name"
+              placeholder="Type food name"
+            />
+          </div>
+        </div>
+        <div className="w-full  gap-3 text-sm">
+          <div className="w-full h-40 pb-2">
+            <label className=" flex text-xs text-[#71717A] font-medium w-full pb-3">
+              Food image
+            </label>
+
+            <Input
+              type="File"
+              defaultValue={image}
+              placeholder="Choose a file or drag & drop it here"
+              className="w- full h-full flex justify-center items-center bg-[rgba(37,_99,_235,0.20)] border-[1px] rounded-md"
+            />
+          </div>
+        </div>
+        <DialogFooter className="sm:justify-start">
+          <div className="flex justify-end pt-10 items-center w-full text-lg font-bold ">
+            <Button
+              // onClick={CreateFood}
+              className="h-10 text-sm font-medium"
+            >
+              Add Dish
+            </Button>
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+};

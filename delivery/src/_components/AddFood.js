@@ -26,9 +26,9 @@ export const AddFood = ({ categoryId, getData }) => {
   const [inputPriceValue, setInpuPriceValue] = useState("");
   const [inputIngredientsValue, setInputIngredientsValue] = useState("");
   const [isShow, setIsShow] = useState(false);
-  console.log(inputNameValue, "sda");
-  console.log(inputPriceValue, "2");
-  console.log(inputIngredientsValue, "3");
+  // console.log(inputNameValue, "sda");
+  // console.log(inputPriceValue, "2");
+  // console.log(inputIngredientsValue, "3");
 
   const CreateFood = async () => {
     await fetch("http://localhost:8000/foods", {

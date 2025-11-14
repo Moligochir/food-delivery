@@ -161,12 +161,12 @@ export const AdminFood = () => {
         </div>
 
         <div className="w-full pt-6">
-          {categories.map((cur, index) => (
-            <div key={index} className="w-full pt-4">
+          {categories.map((cur) => (
+            <div key={cur._id} className="w-full pt-4">
               <FoodData
-                // key={cur.id}
-                catId={cur.id}
-                categoriesData={cur.categoryName}
+                key={cur._id}
+                catId={cur._id}
+                categoryName={cur.categoryName}
               />
             </div>
           ))}
