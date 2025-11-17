@@ -19,10 +19,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const EditFood = ({ foodName, image, ingredients, price,categoryName,categories,categoryId, getData }) => {
-  const [inputNameValue, setInputNameValue] = useState("");
-  const [inputPriceValue, setInpuPriceValue] = useState("");
-  const [inputIngredientsValue, setInputIngredientsValue] = useState("");
+export const EditFood = ({
+  id,
+  foodName,
+  image,
+  ingredients,
+  price,
+  categoryName,
+  categories,
+  categoryId,
+  getData,
+}) => {
+  const [inputNameValue, setInputNameValue] = useState(foodName);
+  const [inputPriceValue, setInpuPriceValue] = useState(price);
+  const [inputIngredientsValue, setInputIngredientsValue] =
+    useState(ingredients);
+  const [inputSelectValue, setInputSelectValue] = useState(categoryName);
   const [isShow, setIsShow] = useState(false);
   // console.log(inputNameValue, "sda");
   // console.log(inputPriceValue, "2");
@@ -38,12 +50,15 @@ export const EditFood = ({ foodName, image, ingredients, price,categoryName,cate
       },
       body: JSON.stringify({
         foodName: inputNameValue,
-        price: inputPriceValue,
+        price: Number(inputPriceValue),
         ingredients: inputIngredientsValue,
-        category: categoryId,
+        category: inputSelectValue,
+        id: id,
         image: "",
       }),
     });
+    console.log(id, "id");
+
     getData();
     setIsShow(false);
   };
@@ -74,6 +89,7 @@ export const EditFood = ({ foodName, image, ingredients, price,categoryName,cate
               Dish name
             </label>
             <Input
+              onChange={(e) => setInputNameValue(e.target.value)}
               className="font-light w-72"
               defaultValue={foodName}
               placeholder="Type food name"
@@ -92,9 +108,17 @@ export const EditFood = ({ foodName, image, ingredients, price,categoryName,cate
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder={categoryName} />
               </SelectTrigger>
-              
-              <SelectContent >
-                {categories.map((cur)=>(<SelectItem key={cur._id} value={cur.categoryName}>{cur.categoryName}</SelectItem>))}
+
+              <SelectContent>
+                {categories.map((cur) => (
+                  <SelectItem
+                    key={cur._id}
+                    onChange={(e) => setInputSelectValue(e.target.value)}
+                    value={cur.categoryName}
+                  >
+                    {cur.categoryName}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -108,7 +132,7 @@ export const EditFood = ({ foodName, image, ingredients, price,categoryName,cate
               Ingredients
             </label>
             <Input
-              onChange={(e) => setInpuPriceValue(e.target.value)}
+              onChange={(e) => setInputIngredientsValue(e.target.value)}
               className="font-light w-72"
               defaultValue={ingredients}
               type="Food name"
@@ -126,7 +150,7 @@ export const EditFood = ({ foodName, image, ingredients, price,categoryName,cate
               Price
             </label>
             <Input
-              onChange={(e) => setInputIngredientsValue(e.target.value)}
+              onChange={(e) => setInpuPriceValue(e.target.value)}
               className="font-light w-72"
               defaultValue={price}
               type="Food name"
@@ -151,10 +175,7 @@ export const EditFood = ({ foodName, image, ingredients, price,categoryName,cate
         </div>
         <DialogFooter className="sm:justify-start">
           <div className="flex justify-end pt-10 items-center w-full text-lg font-bold ">
-            <Button
-              onClick={EditFood}
-              className="h-10 text-sm font-medium"
-            >
+            <Button onClick={EditFood} className="h-10 text-sm font-medium">
               Add Dish
             </Button>
           </div>

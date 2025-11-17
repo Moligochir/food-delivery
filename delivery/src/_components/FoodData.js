@@ -55,7 +55,9 @@ export const FoodData = ({ catId, categoryName, categories }) => {
                   price={cur.price}
                   categoryName={categoryName}
                   categories={categories}
-                  categoryId={catId} getData={getData}
+                  categoryId={catId}
+                  getData={getData}
+                  id={cur._id}
                 />
               </div>
               <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
