@@ -13,7 +13,7 @@ const options = {
   },
 };
 
-export const FoodData = ({ catId, categoryName }) => {
+export const FoodData = ({ catId, categoryName, categories }) => {
   const [isShow, setIsShow] = useState(false);
   const [foods, setFoods] = useState([]);
   const getData = async () => {
@@ -53,6 +53,9 @@ export const FoodData = ({ catId, categoryName }) => {
                   image={cur.image}
                   ingredients={cur.ingredients}
                   price={cur.price}
+                  categoryName={categoryName}
+                  categories={categories}
+                  categoryId={catId} getData={getData}
                 />
               </div>
               <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">

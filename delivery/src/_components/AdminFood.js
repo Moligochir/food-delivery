@@ -167,6 +167,7 @@ export const AdminFood = () => {
                 key={cur._id}
                 catId={cur._id}
                 categoryName={cur.categoryName}
+                categories={categories}
               />
             </div>
           ))}

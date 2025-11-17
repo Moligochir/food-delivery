@@ -19,18 +19,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const EditFood = ({ foodName, image, ingredients, price }) => {
+export const EditFood = ({ foodName, image, ingredients, price,categoryName,categories,categoryId, getData }) => {
   const [inputNameValue, setInputNameValue] = useState("");
   const [inputPriceValue, setInpuPriceValue] = useState("");
   const [inputIngredientsValue, setInputIngredientsValue] = useState("");
   const [isShow, setIsShow] = useState(false);
   // console.log(inputNameValue, "sda");
   // console.log(inputPriceValue, "2");
-  // console.log(inputIngredientsValue, "3");
+  // console.log(categories, "3");
 
-  const ConstEditFood = async () => {
+  const EditFood = async () => {
     await fetch("http://localhost:8000/foods", {
-      method: "POST",
+      method: "PUT",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
@@ -90,10 +90,11 @@ export const EditFood = ({ foodName, image, ingredients, price }) => {
             </label>
             <Select>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Theme" />
+                <SelectValue placeholder={categoryName} />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">{""}</SelectItem>
+              
+              <SelectContent >
+                {categories.map((cur)=>(<SelectItem key={cur._id} value={cur.categoryName}>{cur.categoryName}</SelectItem>))}
               </SelectContent>
             </Select>
           </div>
@@ -151,7 +152,7 @@ export const EditFood = ({ foodName, image, ingredients, price }) => {
         <DialogFooter className="sm:justify-start">
           <div className="flex justify-end pt-10 items-center w-full text-lg font-bold ">
             <Button
-              // onClick={CreateFood}
+              onClick={EditFood}
               className="h-10 text-sm font-medium"
             >
               Add Dish
