@@ -29,7 +29,9 @@ export const FoodData = ({ catId, categoryName, categories }) => {
 
   return (
     <div className="w-full relative justify-start bg-white p-4 rounded-[6px]">
-      <div className="text-xl font-semibold">{categoryName} (6)</div>
+      <div className="text-xl font-semibold">
+        {categoryName} ({categories.length})
+      </div>
       <div className="flex h-full gap-3 w-full flex-wrap pt-4">
         <div className="flex justify-center items-center border-[1px] border-[#18181B] border-dashed rounded-[20px]">
           <div className="w-full h-full items-center flex-col justify-center pl-15 pr-15 pt-17 pb-17">

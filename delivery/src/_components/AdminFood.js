@@ -28,9 +28,20 @@ const options = {
 };
 
 export const AdminFood = () => {
+  const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isShow, setIsShow] = useState(false);
+  const getfoodData = async () => {
+    const data = await fetch(`http://localhost:8000/foods`, options);
+    const jsonData = await data.json();
+
+    setFoods(jsonData);
+  };
+  console.log(foods, "foods");
+  useEffect(() => {
+    getfoodData();
+  }, []);
 
   // const UPLOAD_PRESET = "foodDelivery";
 
@@ -104,11 +115,17 @@ export const AdminFood = () => {
         <div className="w-full justify-start bg-white p-4 rounded-[6px]">
           <div className="text-xl font-semibold">Dishes category</div>
           <div className="flex flex-wrap gap-3 w-full">
+            <Button className={"rounded-[999]"} variant="outline">
+              All dishes
+              <p className="text-white text-xs rounded-[9999] pl-2 pr-2 bg-black">
+                {foods.length}
+              </p>
+            </Button>
             {categories.map((cur, index) => (
               <Button key={index} className={"rounded-[999]"} variant="outline">
                 {cur.categoryName}
                 <p className="text-white text-xs rounded-[9999] pl-2 pr-2 bg-black">
-                  12
+                  {categories.length}
                 </p>
               </Button>
             ))}

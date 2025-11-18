@@ -36,9 +36,9 @@ export const EditFood = ({
     useState(ingredients);
   const [inputSelectValue, setInputSelectValue] = useState(categoryName);
   const [isShow, setIsShow] = useState(false);
-  // console.log(inputNameValue, "sda");
-  // console.log(inputPriceValue, "2");
-  // console.log(categories, "3");
+  console.log(inputNameValue, "sda");
+  console.log(inputSelectValue, "2");
+  console.log(categoryId, "3");
 
   const EditFood = async () => {
     await fetch("http://localhost:8000/foods", {
@@ -57,7 +57,6 @@ export const EditFood = ({
         image: "",
       }),
     });
-    console.log(id, "id");
 
     getData();
     setIsShow(false);
@@ -91,7 +90,7 @@ export const EditFood = ({
             <Input
               onChange={(e) => setInputNameValue(e.target.value)}
               className="font-light w-72"
-              defaultValue={foodName}
+              defaultValue={inputNameValue}
               placeholder="Type food name"
             />
           </div>
@@ -104,7 +103,7 @@ export const EditFood = ({
             >
               Dish category
             </label>
-            <Select>
+            <Select onValueChange={setInputSelectValue}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder={categoryName} />
               </SelectTrigger>
@@ -113,8 +112,8 @@ export const EditFood = ({
                 {categories.map((cur) => (
                   <SelectItem
                     key={cur._id}
-                    onChange={(e) => setInputSelectValue(e.target.value)}
-                    value={cur.categoryName}
+                    value={cur._id}
+                    defaultValue={cur._id}
                   >
                     {cur.categoryName}
                   </SelectItem>
@@ -134,7 +133,7 @@ export const EditFood = ({
             <Input
               onChange={(e) => setInputIngredientsValue(e.target.value)}
               className="font-light w-72"
-              defaultValue={ingredients}
+              defaultValue={inputIngredientsValue}
               type="Food name"
               id="Food name"
               placeholder="Type food name"
@@ -152,7 +151,7 @@ export const EditFood = ({
             <Input
               onChange={(e) => setInpuPriceValue(e.target.value)}
               className="font-light w-72"
-              defaultValue={price}
+              defaultValue={inputPriceValue}
               type="Food name"
               id="Food name"
               placeholder="Type food name"
