@@ -10,7 +10,7 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { PenIcon } from "lucide-react";
+import { PenIcon, TrashIcon } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -61,7 +61,22 @@ export const EditFood = ({
     getData();
     setIsShow(false);
   };
+  const DeleteFood = async () => {
+    await fetch("http://localhost:8000/foods", {
+      method: "DELETE",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: "Bearer ",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    });
 
+    getData();
+    setIsShow(false);
+  };
   return (
     <Dialog open={isShow} onOpenChange={setIsShow}>
       <DialogTrigger asChild>
@@ -173,7 +188,16 @@ export const EditFood = ({
           </div>
         </div>
         <DialogFooter className="sm:justify-start">
-          <div className="flex justify-end pt-10 items-center w-full text-lg font-bold ">
+          <div className="flex justify-between pt-10 items-center w-full text-lg font-bold ">
+            <Button
+              onClick={DeleteFood}
+              variant="outline"
+              size="icon"
+              aria-label="Submit"
+              className="text-[#EF4444] border-[#EF4444] h-10 w-10"
+            >
+              <TrashIcon />
+            </Button>
             <Button onClick={EditFood} className="h-10 text-sm font-medium">
               Add Dish
             </Button>

@@ -1,5 +1,5 @@
-import { DownArrow } from "@/app/FoodIkon/downArrow";
-import { SortIkon } from "@/app/FoodIkon/sortIkon";
+import { DownArrow } from "@/_components/FoodIkon/downArrow";
+import { SortIkon } from "@/_components/FoodIkon/sortIkon";
 
 export const OrderData = () => {
   return (

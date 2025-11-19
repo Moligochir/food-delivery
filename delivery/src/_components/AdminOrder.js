@@ -1,11 +1,11 @@
-import { DateIkon } from "@/app/FoodIkon/dateIkon";
-import { DeliveryIkon } from "@/app/FoodIkon/deliveryIkon";
-import { MenuIkon } from "@/app/FoodIkon/menuikon";
+import { DateIkon } from "@/_components/FoodIkon/dateIkon";
+import { DeliveryIkon } from "@/_components/FoodIkon/deliveryIkon";
+import { MenuIkon } from "@/_components/FoodIkon/menuikon";
 
-import { SortIkon } from "@/app/FoodIkon/sortIkon";
+import { SortIkon } from "@/_components/FoodIkon/sortIkon";
 import { OrderData } from "./OrderData";
 import Link from "next/link";
-import { NomNom } from "@/app/FoodIkon/nomnom";
+import { NomNom } from "@/_components/FoodIkon/nomnom";
 
 export const AdminOrder = () => {
   return (

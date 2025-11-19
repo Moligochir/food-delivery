@@ -1,6 +1,6 @@
 "use client";
 
-import { NomNom } from "@/app/FoodIkon/nomnom";
+import { NomNom } from "@/_components/FoodIkon/nomnom";
 import { FoodData } from "./FoodData";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
@@ -16,8 +16,9 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 
-import { MenuIkonWhite } from "@/app/FoodIkon/menuikonWhite";
-import { DeliveryIkonBl } from "@/app/FoodIkon/deliveryIkonBl";
+import { MenuIkonWhite } from "@/_components/FoodIkon/menuikonWhite";
+import { DeliveryIkonBl } from "@/_components/FoodIkon/deliveryIkonBl";
+import { CategoryButton } from "./CategoryButton";
 
 const options = {
   method: "GET",
@@ -38,7 +39,7 @@ export const AdminFood = () => {
 
     setFoods(jsonData);
   };
-  console.log(foods, "foods");
+
   useEffect(() => {
     getfoodData();
   }, []);
@@ -121,13 +122,12 @@ export const AdminFood = () => {
                 {foods.length}
               </p>
             </Button>
-            {categories.map((cur, index) => (
-              <Button key={index} className={"rounded-[999]"} variant="outline">
-                {cur.categoryName}
-                <p className="text-white text-xs rounded-[9999] pl-2 pr-2 bg-black">
-                  {categories.length}
-                </p>
-              </Button>
+            {categories.map((cur) => (
+              <CategoryButton
+                key={cur._id}
+                catId={cur._id}
+                categoryName={cur.categoryName}
+              />
             ))}
 
             <Dialog open={isShow} onOpenChange={setIsShow}>
