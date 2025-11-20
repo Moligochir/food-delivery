@@ -1,5 +1,11 @@
-import { AdminOrder } from "@/_components/AdminOrder";
+import { Footer } from "@/_components/Footer";
+import { Header } from "@/_components/Header";
 
 export default function Home() {
-  return <AdminOrder />;
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  );
 }
