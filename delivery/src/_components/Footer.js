@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { NomNom } from "./FoodIkon/nomnom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const options = {
   method: "GET",
@@ -20,16 +20,20 @@ export const Footer = () => {
 
     setCategories(jsonData);
   };
+  useEffect(() => {
+      getData();
+    }, []);
+console.log(categories,"cate");
 
   return (
-    <div className="">
+    <div className="w-[1440px]">
       <div className="flex justify-start items-start w-full pt-19 pb-19 pl-22 pr-22 bg-[#18181B]">
         <div className="">
           <div className="flex justify-center items-center">
             <NomNom />
           </div>
 
-          <p className="text-sm text-[#71717A]">
+          <div className="text-sm text-[#71717A]">
             <h5 className="text-xl font-black flex text-[#FAFAFA]">
               Nom
               <span className="text-xl font-black text-[#EF4444] flex">
@@ -37,7 +41,7 @@ export const Footer = () => {
               </span>
             </h5>
             Swift delivery
-          </p>
+          </div>
         </div>
         <div className="flex justify-between items-start w-full pl-55 pr-42">
           <div className="text-white">
@@ -55,13 +59,14 @@ export const Footer = () => {
           </div>
 
           <div className="text-white">
-            <div className="flex justify-start pb-4 items-center text-white">
+            <div className="flex justify-start pb-4 items-start text-white">
               <h6 className="text-[#71717A]">MENU</h6>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-14 gap-y-4 justify-center items-center text-white">
-              <div className="flex justify-center items-center">Appetizers</div>
-            </div>
+            {categories.map((cur) => (
+              <div key={cur._id} className="grid grid-cols-2 gap-x-14 pb-4 justify-start items-start text-white">
+              <div className="flex justify-start items-start text-medium">{cur.categoryName}</div>
+            </div>))}
           </div>
           <div className="text-white">
             <div className="flex justify-start pb-4 items-center text-white">
