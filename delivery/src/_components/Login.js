@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export const Login = () => {
@@ -61,7 +62,7 @@ export const Login = () => {
           <form>
             <div className="flex flex-col gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                
                 <Input
                   onChange={(e) => setInputUsernameValue(e.target.value)}
                   id="email"
@@ -92,10 +93,11 @@ export const Login = () => {
         <CardFooter className="flex-col gap-2">
           <Button onClick={UserLogin} type="submit" className="w-full">
             Login
-          </Button>
-          <Button variant="outline" className="w-full text-[#2563EB]">
+          </Button >
+          <Link href={`/sign-up`}><Button variant="outline" className="w-full text-[#2563EB]">
             <p className="text-[#71717A]">Don’t have an account?</p> Sign up
           </Button>
+          </Link>
         </CardFooter>
       </Card>
 
