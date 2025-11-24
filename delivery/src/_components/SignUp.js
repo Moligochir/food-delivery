@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import { ChevronLeftIcon } from "lucide-react";
 import { useState } from "react";
 
-export const Login = () => {
+export const SignUp = () => {
   const [inputUsernameValue, setInputUsernameValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
   // console.log(inputUsernameValue, "name");

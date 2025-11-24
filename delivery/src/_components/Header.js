@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { NomNom } from "./FoodIkon/nomnom";
 import {
@@ -8,6 +8,19 @@ import {
   ShoppingCartIcon,
   User2Icon,
 } from "lucide-react";
+
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { FoodCard } from "./FoodCard";
 
@@ -22,17 +35,16 @@ const options = {
 export const Header = () => {
   const [categories, setCategories] = useState([]);
   const getData = async () => {
-      const data = await fetch("http://localhost:8000/food-category", options);
-      const jsonData = await data.json();
-  
-      setCategories(jsonData);
-    };
-  
-    useEffect(() => {
-      getData();
-    }, []);
-  
-  
+    const data = await fetch("http://localhost:8000/food-category", options);
+    const jsonData = await data.json();
+
+    setCategories(jsonData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="w-[1440px]">
       <div className="flex justify-between items-center w-full p-4 pl-22 pr-22 bg-[#18181B]">
@@ -52,7 +64,7 @@ export const Header = () => {
         <div className="flex gap-3">
           <Button
             className="rounded-[999] bg-[#F4F4F5] text-[#18181B]"
-            variant="destructive"
+            variant="secondary"
           >
             Sign up
           </Button>
@@ -76,21 +88,48 @@ export const Header = () => {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button
-            className="rounded-[999] bg-[#F4F4F5] text-[#EF4444]"
-            variant="destructive"
-          >
-            <MapPinIcon />
-            Delivery address:
-            <span className="flex items-center text-[#71717A]">
-              Add Location
-              <ChevronRightIcon />
-            </span>
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                className="rounded-[999] bg-[#F4F4F5] text-[#EF4444]"
+                variant="secondary"
+              >
+                <MapPinIcon />
+                Delivery address:
+                <span className="flex items-center text-[#71717A]">
+                  Add Location
+                  <ChevronRightIcon />
+                </span>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle className="text-lg">
+                  Please write your delivery address!
+                </DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4">
+                <div className="grid gap-3">
+                  <Input
+                    className="h-20"
+                    id="Delivery address"
+                    name="name"
+                    placeholder="Please share your complete address"
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+                <Button type="submit">Deliver Here</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
 
           <Button
             className="rounded-full bg-[#F4F4F5] text-[#18181B]"
-            variant="destructive"
+            variant="secondary"
             size="icon"
           >
             <ShoppingCartIcon />
@@ -100,14 +139,14 @@ export const Header = () => {
           </Button>
         </div>
       </div>
-      <img className="w-full h-[570px]" src="/homeImg.png"/>
+      <img className="w-full h-[570px]" src="/homeImg.png" />
       {categories.map((cur) => (
-        <FoodCard 
-          key={cur._id} 
+        <FoodCard
+          key={cur._id}
           catId={cur._id}
           categoryName={cur.categoryName}
-                />))}
+        />
+      ))}
     </div>
-    
-  )
-}
+  );
+};

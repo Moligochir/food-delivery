@@ -21,9 +21,8 @@ export const Footer = () => {
     setCategories(jsonData);
   };
   useEffect(() => {
-      getData();
-    }, []);
-console.log(categories,"cate");
+    getData();
+  }, []);
 
   return (
     <div className="w-[1440px]">
@@ -64,9 +63,15 @@ console.log(categories,"cate");
             </div>
 
             {categories.map((cur) => (
-              <div key={cur._id} className="grid grid-cols-2 gap-x-14 pb-4 justify-start items-start text-white">
-              <div className="flex justify-start items-start text-medium">{cur.categoryName}</div>
-            </div>))}
+              <div
+                key={cur._id}
+                className="grid grid-cols-2 gap-x-14 pb-4 justify-start items-start text-white"
+              >
+                <div className="flex justify-start items-start text-medium">
+                  {cur.categoryName}
+                </div>
+              </div>
+            ))}
           </div>
           <div className="text-white">
             <div className="flex justify-start pb-4 items-center text-white">
