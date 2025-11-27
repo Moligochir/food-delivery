@@ -5,10 +5,12 @@ import { createUser } from "../resolvers/users/create-users.js";
 import { updateUser } from "../resolvers/users/update-users.js";
 import { deleteUser } from "../resolvers/users/delete-users.js";
 import { login } from "../resolvers/users/login-users.js";
+import { getUserById } from "../resolvers/users/get-user-id.js";
 
 export const userRouter = express.Router();
 
 userRouter.get("/", getUser);
+userRouter.get("/me", getUserById);
 userRouter.post("/", createUser);
 userRouter.put("/", updateUser);
 userRouter.delete("/", deleteUser);

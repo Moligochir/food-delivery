@@ -10,12 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const Login = () => {
+  const router = useRouter();
   const [inputUsernameValue, setInputUsernameValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
   // console.log(inputUsernameValue, "name");
@@ -38,7 +39,7 @@ export const Login = () => {
 
       const jsonData = await response.json();
       console.log(jsonData, "hariu bainuu");
-      localStorage.setItem("jsonData", token);
+      localStorage.setItem("token", jsonData.token);
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -62,7 +63,6 @@ export const Login = () => {
           <form>
             <div className="flex flex-col gap-4">
               <div className="grid gap-2">
-                
                 <Input
                   onChange={(e) => setInputUsernameValue(e.target.value)}
                   id="email"
@@ -93,10 +93,11 @@ export const Login = () => {
         <CardFooter className="flex-col gap-2">
           <Button onClick={UserLogin} type="submit" className="w-full">
             Login
-          </Button >
-          <Link href={`/sign-up`}><Button variant="outline" className="w-full text-[#2563EB]">
-            <p className="text-[#71717A]">Don’t have an account?</p> Sign up
           </Button>
+          <Link href={`/sign-up`}>
+            <Button variant="outline" className="w-full text-[#2563EB]">
+              <p className="text-[#71717A]">Don’t have an account?</p> Sign up
+            </Button>
           </Link>
         </CardFooter>
       </Card>

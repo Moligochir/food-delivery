@@ -13,18 +13,19 @@ import { Input } from "@/components/ui/input";
 
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const SignUp = () => {
+  const router = useRouter();
   const [inputUsernameValue, setInputUsernameValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
-  const [inputConfirmPasswordValue, setInputConfirmPasswordValue] =
-    useState("");
 
   const [isValid, setIsValid] = useState(true);
   const [step, setStep] = useState(false);
   const [isValidPass, setIsValidPass] = useState(true);
-  const [isValidConfirmPass, setIsValidConfirmPass] = useState(true);
+
+  const [isValidConfirmPass, setIsValidConfirmPass] = useState(false);
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/;
   const passWordRegex =
@@ -45,14 +46,15 @@ export const SignUp = () => {
 
     setIsValidPass(true);
   };
-  const handleConfirmPasswordChange = (event) => {
-    const confirmPassword = event.target.value;
-    setInputConfirmPasswordValue(confirmPassword);
-    if (inputPasswordValue !== inputConfirmPasswordValue)
-      console.log("2", inputConfirmPasswordValue, confirmPassword);
 
-    return setIsValidConfirmPass(true);
+  const handleConfirmPasswordChange = (event) => {
+    if (inputPasswordValue !== event.target.value) {
+      setIsValidConfirmPass(true);
+    } else {
+      setIsValidConfirmPass(false);
+    }
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setStep(true);
@@ -75,6 +77,8 @@ export const SignUp = () => {
           password: inputPasswordValue,
         }),
       });
+
+      router.push("/login");
     } catch (err) {}
   };
 
@@ -173,7 +177,7 @@ export const SignUp = () => {
                     type="password"
                     required
                   />
-                  {!isValidConfirmPass && (
+                  {isValidConfirmPass && (
                     <p className="text-xs" style={{ color: "red" }}>
                       Those password did’t match, Try again
                     </p>
@@ -191,14 +195,14 @@ export const SignUp = () => {
           <CardFooter className="flex-col gap-2">
             <Button
               disabled={isValidConfirmPass}
-              onClick={""}
+              onClick={CreateUser}
               type="submit"
               className="w-full"
             >
               Let's Go
             </Button>
             <Button variant="outline" className="w-full text-[#2563EB]">
-              <p className="text-[#71717A]">Don’t have an account?</p> Sign up
+              <p className="text-[#71717A]">Already have an account?</p> Log in
             </Button>
           </CardFooter>
         </Card>

@@ -13,16 +13,16 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { FoodCard } from "./FoodCard";
+import { useContext } from "react";
+import { AuthContext } from "@/_context/AuthProvider";
 
 const options = {
   method: "GET",
@@ -33,6 +33,7 @@ const options = {
 };
 
 export const Header = () => {
+  const { token, loading, user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const getData = async () => {
     const data = await fetch("http://localhost:8000/food-category", options);
@@ -47,7 +48,7 @@ export const Header = () => {
 
   return (
     <div className="w-[1440px]">
-      <div className="flex justify-between items-center w-full p-4 pl-22 pr-22 bg-[#18181B]">
+      {/* <div className="flex justify-between items-center w-full p-4 pl-22 pr-22 bg-[#18181B]">
         <div className="flex">
           <NomNom />
 
@@ -72,7 +73,7 @@ export const Header = () => {
             Log in
           </Button>
         </div>
-      </div>
+      </div> */}
       <div className="flex justify-between items-center w-full p-4 pl-22 pr-22 bg-[#18181B]">
         <div className="flex">
           <NomNom />

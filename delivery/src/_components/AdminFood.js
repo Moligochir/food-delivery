@@ -44,9 +44,9 @@ export const AdminFood = () => {
     getfoodData();
   }, []);
 
-  // const UPLOAD_PRESET = "foodDelivery";
+  const UPLOAD_PRESET = "foodDelivery";
 
-  // const CLOUD_NAME = "didfxzpn3";
+  const CLOUD_NAME = "didfxzpn3";
 
   const handleSearchInput = (event) => {
     setInputValue(event.target.value);
