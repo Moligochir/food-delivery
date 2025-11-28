@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 export const getUserById = async (req, res) => {
   const token = req.headers.authorization;
   const { id } = jwt.verify(token, "secret-key");
-  const users = await userModel.find({ _id: id });
+  const users = await userModel.findById(id);
 
-  res.status(200).json(users);
+  res.status(200).json({ user: users });
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const AuthContext = createContext({});
 
@@ -24,7 +25,6 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-    console.log(user, "user bnuu");
   };
 
   useEffect(() => {

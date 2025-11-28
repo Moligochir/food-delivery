@@ -18,6 +18,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { FoodCard } from "./FoodCard";
@@ -33,14 +38,22 @@ const options = {
 };
 
 export const Header = () => {
+  const [isShow, setIsShow] = useState(false);
   const { token, loading, user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
+
+  const HandleClickSignOut = () => {
+    return localStorage.clear(HandleClickSignOut);
+  };
+
   const getData = async () => {
     const data = await fetch("http://localhost:8000/food-category", options);
     const jsonData = await data.json();
 
     setCategories(jsonData);
   };
+  console.log(user, "usershoo");
+  console.log(token, "tokshoo");
 
   useEffect(() => {
     getData();
@@ -74,7 +87,7 @@ export const Header = () => {
           </Button>
         </div>
       </div> */}
-      <div className="flex justify-between items-center w-full p-4 pl-22 pr-22 bg-[#18181B]">
+      <div className="flex justify-between items-center w-full h-[172px] p-4 pl-22 pr-22 bg-[#18181B]">
         <div className="flex">
           <NomNom />
 
@@ -88,7 +101,7 @@ export const Header = () => {
             Swift delivery
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 relative">
           <Dialog>
             <DialogTrigger asChild>
               <Button
@@ -135,9 +148,26 @@ export const Header = () => {
           >
             <ShoppingCartIcon />
           </Button>
-          <Button className="rounded-full" variant="destructive">
-            <User2Icon />
-          </Button>
+          <Popover>
+            <PopoverTrigger>
+              <Button className="rounded-full" variant="destructive">
+                <User2Icon />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full ">
+              <h1 className="w-full flex justify-center items-center">
+                {user?.email}
+              </h1>
+
+              <Button
+                onClick={HandleClickSignOut}
+                className="rounded-[999] w-full flex justify-center items-center"
+                variant="outline"
+              >
+                Sign out
+              </Button>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
       <img className="w-full h-[570px]" src="/homeImg.png" />
