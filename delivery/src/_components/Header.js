@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { NomNom } from "./FoodIkon/nomnom";
 import {
   ChevronRightIcon,
-  MapPin,
   MapPinIcon,
   ShoppingCartIcon,
   User2Icon,
@@ -150,15 +149,19 @@ export const Header = () => {
             <ShoppingCartIcon />
           </Button>
           <Popover>
-            <PopoverTrigger>
-              <Button className="rounded-full" variant="destructive">
-                <User2Icon />
-              </Button>
+            <PopoverTrigger
+              className="rounded-full bg-red-500 w-9 h-9 flex text-white justify-center items-center"
+              variant="secondary"
+            >
+              <User2Icon className="w-4" />
             </PopoverTrigger>
             <PopoverContent className="w-full ">
-              <h1 className="w-full flex justify-center items-center">
-                {user?.email}
-              </h1>
+              {loading && <p>Loading...</p>}
+              {!loading && (
+                <h1 className="w-full flex justify-center items-center">
+                  {user.email}
+                </h1>
+              )}
 
               <Button
                 onClick={HandleClickSignOut}

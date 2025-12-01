@@ -27,7 +27,6 @@ export const EditFood = ({
   price,
   categoryName,
   categories,
-  categoryId,
   getData,
 }) => {
   const [inputNameValue, setInputNameValue] = useState(foodName);
@@ -39,9 +38,6 @@ export const EditFood = ({
 
   const [inputSelectValue, setInputSelectValue] = useState(categoryName);
   const [isShow, setIsShow] = useState(false);
-  console.log(inputNameValue, "sda");
-  console.log(inputSelectValue, "2");
-  console.log(categoryId, "3");
 
   const EditFood = async () => {
     await fetch(`${url}/foods`, {

@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRightIcon, ImageIcon, PenIcon, XIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -10,7 +9,7 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
+
 import { useState } from "react";
 
 const options = {
@@ -27,10 +26,6 @@ export const AddFood = ({ categoryId, getData }) => {
   const [inputIngredientsValue, setInputIngredientsValue] = useState("");
   const [isShow, setIsShow] = useState(false);
   const url = process.env.NEXT_PUBLIC_BACKEND_URL;
-
-  // console.log(inputNameValue, "sda");
-  // console.log(inputPriceValue, "2");
-  // console.log(inputIngredientsValue, "3");
 
   const CreateFood = async () => {
     await fetch(`${url}/foods`, {

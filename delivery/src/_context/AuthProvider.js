@@ -7,11 +7,12 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const getUserById = async (localToken) => {
+    setLoading(true);
     try {
       const rawData = await fetch(`${url}/users/me`, {
         method: "GET",
@@ -20,12 +21,10 @@ export const AuthProvider = ({ children }) => {
         },
       });
       const data = await rawData.json();
-      console.log(data, "data bnuu");
+
       setUser(data.user);
       setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

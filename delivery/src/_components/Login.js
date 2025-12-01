@@ -19,8 +19,6 @@ export const Login = () => {
   const router = useRouter();
   const [inputUsernameValue, setInputUsernameValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
-  // console.log(inputUsernameValue, "name");
-  // console.log(inputPasswordValue, "pass");
   const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const UserLogin = async () => {
