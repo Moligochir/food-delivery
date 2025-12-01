@@ -28,7 +28,7 @@ const options = {
 export const FoodCard = ({ catId, categoryName }) => {
   const [foods, setFoods] = useState([]);
   const getData = async () => {
-    const data = await fetch(`http://localhost:8000/foods/${catId}`, options);
+    const data = await fetch(`${BACKEND_URL}/foods/${catId}`, options);
     const jsonData = await data.json();
 
     setFoods(jsonData);

@@ -34,7 +34,7 @@ export const AdminFood = () => {
   const [inputValue, setInputValue] = useState("");
   const [isShow, setIsShow] = useState(false);
   const getfoodData = async () => {
-    const data = await fetch(`http://localhost:8000/foods`, options);
+    const data = await fetch(`${BACKEND_URL}/foods`, options);
     const jsonData = await data.json();
 
     setFoods(jsonData);
@@ -54,7 +54,7 @@ export const AdminFood = () => {
   };
 
   const CreateCategory = async () => {
-    await fetch("http://localhost:8000/food-category", {
+    await fetch(`${BACKEND_URL}/food-category`, {
       method: "POST",
       headers: {
         accept: "application/json",
@@ -70,7 +70,7 @@ export const AdminFood = () => {
   };
 
   const getData = async () => {
-    const data = await fetch("http://localhost:8000/food-category", options);
+    const data = await fetch(`${BACKEND_URL}/food-category`, options);
     const jsonData = await data.json();
 
     setCategories(jsonData);

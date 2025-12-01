@@ -15,7 +15,7 @@ export const Footer = () => {
   const [categories, setCategories] = useState([]);
 
   const getData = async () => {
-    const data = await fetch("http://localhost:8000/food-category", options);
+    const data = await fetch(`${BACKEND_URL}/food-category`, options);
     const jsonData = await data.json();
 
     setCategories(jsonData);

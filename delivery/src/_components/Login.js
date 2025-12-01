@@ -24,7 +24,7 @@ export const Login = () => {
 
   const UserLogin = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/users/login`, {
+      const response = await fetch(`${BACKEND_URL}/users/login`, {
         method: "POST",
         headers: {
           accept: "application/json",

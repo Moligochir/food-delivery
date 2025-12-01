@@ -65,7 +65,7 @@ export const SignUp = () => {
 
   const CreateUser = async () => {
     try {
-      await fetch(`http://localhost:8000/users`, {
+      await fetch(`${BACKEND_URL}/users`, {
         method: "POST",
         headers: {
           accept: "application/json",

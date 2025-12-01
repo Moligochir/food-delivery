@@ -31,7 +31,7 @@ export const AddFood = ({ categoryId, getData }) => {
   // console.log(inputIngredientsValue, "3");
 
   const CreateFood = async () => {
-    await fetch("http://localhost:8000/foods", {
+    await fetch(`${BACKEND_URL}/foods`, {
       method: "POST",
       headers: {
         accept: "application/json",

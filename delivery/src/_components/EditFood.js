@@ -41,7 +41,7 @@ export const EditFood = ({
   console.log(categoryId, "3");
 
   const EditFood = async () => {
-    await fetch("http://localhost:8000/foods", {
+    await fetch(`${BACKEND_URL}/foods`, {
       method: "PUT",
       headers: {
         accept: "application/json",
@@ -62,7 +62,7 @@ export const EditFood = ({
     setIsShow(false);
   };
   const DeleteFood = async () => {
-    await fetch("http://localhost:8000/foods", {
+    await fetch(`${BACKEND_URL}/foods`, {
       method: "DELETE",
       headers: {
         accept: "application/json",
