@@ -9,10 +9,11 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const getUserById = async (localToken) => {
     try {
-      const rawData = await fetch("http://localhost:8000/users/me", {
+      const rawData = await fetch(`${url}/users/me`, {
         method: "GET",
         headers: {
           authorization: localToken,
