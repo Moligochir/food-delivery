@@ -22,6 +22,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { FoodCard } from "./FoodCard";
@@ -37,13 +38,15 @@ const options = {
 };
 
 export const Header = () => {
+  const router = useRouter();
   const [isShow, setIsShow] = useState(false);
   const { token, loading, user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const HandleClickSignOut = () => {
-    return localStorage.clear(HandleClickSignOut);
+    localStorage.clear(HandleClickSignOut);
+    router.push("/login");
   };
 
   const getData = async () => {
