@@ -13,9 +13,10 @@ const options = {
 
 export const Footer = () => {
   const [categories, setCategories] = useState([]);
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const getData = async () => {
-    const data = await fetch(`${BACKEND_URL}/food-category`, options);
+    const data = await fetch(`${url}/food-category`, options);
     const jsonData = await data.json();
 
     setCategories(jsonData);

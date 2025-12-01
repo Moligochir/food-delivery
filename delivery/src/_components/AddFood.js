@@ -26,12 +26,14 @@ export const AddFood = ({ categoryId, getData }) => {
   const [inputPriceValue, setInpuPriceValue] = useState("");
   const [inputIngredientsValue, setInputIngredientsValue] = useState("");
   const [isShow, setIsShow] = useState(false);
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   // console.log(inputNameValue, "sda");
   // console.log(inputPriceValue, "2");
   // console.log(inputIngredientsValue, "3");
 
   const CreateFood = async () => {
-    await fetch(`${BACKEND_URL}/foods`, {
+    await fetch(`${url}/foods`, {
       method: "POST",
       headers: {
         accept: "application/json",

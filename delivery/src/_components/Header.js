@@ -41,13 +41,14 @@ export const Header = () => {
   const [isShow, setIsShow] = useState(false);
   const { token, loading, user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const HandleClickSignOut = () => {
     return localStorage.clear(HandleClickSignOut);
   };
 
   const getData = async () => {
-    const data = await fetch(`${BACKEND_URL}/food-category`, options);
+    const data = await fetch(`${url}/food-category`, options);
     const jsonData = await data.json();
 
     setCategories(jsonData);

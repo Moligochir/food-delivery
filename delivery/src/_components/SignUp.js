@@ -20,6 +20,7 @@ export const SignUp = () => {
   const router = useRouter();
   const [inputUsernameValue, setInputUsernameValue] = useState("");
   const [inputPasswordValue, setInputPasswordValue] = useState("");
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const [isValid, setIsValid] = useState(true);
   const [step, setStep] = useState(false);
@@ -65,7 +66,7 @@ export const SignUp = () => {
 
   const CreateUser = async () => {
     try {
-      await fetch(`${BACKEND_URL}/users`, {
+      await fetch(`${url}/users`, {
         method: "POST",
         headers: {
           accept: "application/json",

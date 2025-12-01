@@ -16,8 +16,10 @@ const options = {
 export const FoodData = ({ catId, categoryName, categories }) => {
   const [isShow, setIsShow] = useState(false);
   const [foods, setFoods] = useState([]);
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   const getData = async () => {
-    const data = await fetch(`${BACKEND_URL}/foods/${catId}`, options);
+    const data = await fetch(`${url}/foods/${catId}`, options);
     const jsonData = await data.json();
 
     setFoods(jsonData);

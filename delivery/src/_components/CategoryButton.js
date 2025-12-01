@@ -11,9 +11,11 @@ const options = {
 };
 
 export const CategoryButton = ({ categoryName, catId }) => {
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   const [foods, setFoods] = useState([]);
   const getData = async () => {
-    const data = await fetch(`${BACKEND_URL}/foods/${catId}`, options);
+    const data = await fetch(`${url}/foods/${catId}`, options);
     const jsonData = await data.json();
 
     setFoods(jsonData);

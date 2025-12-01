@@ -33,8 +33,10 @@ export const AdminFood = () => {
   const [categories, setCategories] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isShow, setIsShow] = useState(false);
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   const getfoodData = async () => {
-    const data = await fetch(`${BACKEND_URL}/foods`, options);
+    const data = await fetch(`${url}/foods`, options);
     const jsonData = await data.json();
 
     setFoods(jsonData);

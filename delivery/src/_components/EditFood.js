@@ -34,6 +34,9 @@ export const EditFood = ({
   const [inputPriceValue, setInpuPriceValue] = useState(price);
   const [inputIngredientsValue, setInputIngredientsValue] =
     useState(ingredients);
+
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   const [inputSelectValue, setInputSelectValue] = useState(categoryName);
   const [isShow, setIsShow] = useState(false);
   console.log(inputNameValue, "sda");
@@ -41,7 +44,7 @@ export const EditFood = ({
   console.log(categoryId, "3");
 
   const EditFood = async () => {
-    await fetch(`${BACKEND_URL}/foods`, {
+    await fetch(`${url}/foods`, {
       method: "PUT",
       headers: {
         accept: "application/json",
@@ -62,7 +65,7 @@ export const EditFood = ({
     setIsShow(false);
   };
   const DeleteFood = async () => {
-    await fetch(`${BACKEND_URL}/foods`, {
+    await fetch(`${url}/foods`, {
       method: "DELETE",
       headers: {
         accept: "application/json",

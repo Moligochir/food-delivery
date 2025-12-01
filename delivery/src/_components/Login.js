@@ -21,10 +21,10 @@ export const Login = () => {
   const [inputPasswordValue, setInputPasswordValue] = useState("");
   // console.log(inputUsernameValue, "name");
   // console.log(inputPasswordValue, "pass");
-
+  const url = process.env.NEXT_PUBLIC_BACKEND_URL;
   const UserLogin = async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/users/login`, {
+      const response = await fetch(`${url}/users/login`, {
         method: "POST",
         headers: {
           accept: "application/json",
